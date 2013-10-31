@@ -23,7 +23,22 @@
 	}
   
 	function addEvent($eventDate, $eventOrgId, $eventTitle, $eventFoursquare, $eventAddress, $eventStartTime, $eventEndTime, $eventSummary, $eventType, $eventSpecialNotes, $eventAlcohol) {
-		$dbQuery = sprintf("INSERT INTO EVENTS (`DATE`, `ORG_ID`, `TITLE`, `FOURSQUARE`, `ADDRESS`, `START_TIME`, `END_TIME`, `SUMMARY`, `TYPE`, `SPECIAL_NOTES`, `ALCOHOL`, `CREATED_DATE`, `CREATED_BY`, `DELETED`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", mysql_real_escape_string($eventDate), mysql_real_escape_string($eventOrgId), mysql_real_escape_string($eventTitle), mysql_real_escape_string($eventFoursquare), mysql_real_escape_string($eventAddress), mysql_real_escape_string($eventStartTime), mysql_real_escape_string($eventEndTime), mysql_real_escape_string($eventSummary), mysql_real_escape_string($eventType), mysql_real_escape_string($eventSpecialNotes), mysql_real_escape_string($eventAlcohol), "CURRENT_TIMESTAMP()", $_USER['uid'], "false");
+		$dbQuery = sprintf("INSERT INTO EVENTS (`DATE`, `ORG_ID`, `TITLE`, `FOURSQUARE`, `ADDRESS`, `START_TIME`, `END_TIME`, `SUMMARY`, `TYPE`, `SPECIAL_NOTES`, `ALCOHOL`, `CREATED_DATE`, `CREATED_BY`, `DELETED`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')", 
+			mysql_real_escape_string($eventDate), 
+			mysql_real_escape_string($eventOrgId), 
+			mysql_real_escape_string($eventTitle), 
+			mysql_real_escape_string($eventFoursquare), 
+			mysql_real_escape_string($eventAddress), 
+			mysql_real_escape_string($eventStartTime), 
+			mysql_real_escape_string($eventEndTime), 
+			mysql_real_escape_string($eventSummary), 
+			mysql_real_escape_string($eventType), 
+			mysql_real_escape_string($eventSpecialNotes), 
+			mysql_real_escape_string($eventAlcohol), 
+			mysql_real_escape_string("CURRENT_TIMESTAMP()"), 
+			mysql_real_escape_string($_USER['uid']), 
+			mysql_real_escape_string("false"));
+		
 		echo "Query " . $dbQuery . "</br>";
 		$result = getDBResultInserted($dbQuery,'EVENT_ID');
 		
